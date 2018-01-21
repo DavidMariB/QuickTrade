@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dmb.quicktrade.Users.EditUserActivity"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDITAR USUARIO"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:ems="12"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/editSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Apellido"
+        android:ems="12"/>
+
+    <EditText
+        android:id="@+id/editAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Direccion"
+        android:ems="12"/>
+
+    <Button
+        android:id="@+id/btnEditUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="editar usuario"
+        android:layout_marginTop="20dp"
+        android:onClick="editUser"/>
+
+</android.widget.LinearLayout>

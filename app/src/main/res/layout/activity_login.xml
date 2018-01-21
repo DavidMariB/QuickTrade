@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dmb.quicktrade.Users.LoginActivity"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/logEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:ems="12"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/logPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:ems="12"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="registerUser"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/btnConfirmLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:layout_marginTop="20dp"
+        android:onClick="logInUser"/>
+
+</LinearLayout>

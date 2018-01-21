@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dmb.quicktrade.Products.ProductsActivity"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp">
+
+    <TextView
+        android:id="@+id/tvProdTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRODUCTOS"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="92dp"
+        android:text="Filtrar por Categoría"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <ListView
+        android:id="@+id/listProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categorySpinner">
+
+    </ListView>
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+        android:layout_width="220dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/listProducts"
+        android:layout_marginTop="110dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxMyItems"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/tvCategory"
+        android:layout_alignStart="@+id/categorySpinner"
+        android:layout_marginBottom="24dp"
+        android:text="Ver Solo Mis Items" />
+
+    <Button
+        android:id="@+id/btnAddProduct"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/categorySpinner"
+        android:layout_alignEnd="@+id/listProducts"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="17dp"
+        android:text="+"
+        android:textSize="30sp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#ffffff"
+        android:onClick="addProductActivity"/>
+
+</RelativeLayout>

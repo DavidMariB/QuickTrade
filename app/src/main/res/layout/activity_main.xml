@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dmb.quicktrade.MainActivity"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QuickTrade"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnUserLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:onClick="loginActivity"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/btnUserRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:onClick="registerActivity"/>
+
+    </LinearLayout>
+
+</LinearLayout>

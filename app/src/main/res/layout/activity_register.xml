@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dmb.quicktrade.Users.RegisterActivity"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/regUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de Usuario"
+        android:ems="12"
+        android:paddingTop="30dp"/>
+
+    <EditText
+        android:id="@+id/regName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:ems="12"/>
+
+    <EditText
+        android:id="@+id/regSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Apellidos"
+        android:ems="12"/>
+
+    <EditText
+        android:id="@+id/regEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Correo Electronico"
+        android:ems="12"/>
+
+    <EditText
+        android:id="@+id/regPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:ems="12"/>
+
+    <EditText
+        android:id="@+id/regAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Direccion"
+        android:ems="12"/>
+
+    <Button
+        android:id="@+id/btnConfirmRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:layout_marginTop="30dp"
+        android:onClick="userRegister"/>
+
+</LinearLayout>
