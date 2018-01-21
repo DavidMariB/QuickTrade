@@ -3,6 +3,7 @@ package com.dmb.quicktrade.Products;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,15 +45,13 @@ public class ProductsActivity extends AppCompatActivity {
 
     DatabaseReference userReference;
     DatabaseReference allItems;
-    DatabaseReference itemReference;
     String userUID;
-
-    Product currentProd;
 
     ArrayList<Product> products = new ArrayList<>();
     ArrayList<Product> filteredProducts = new ArrayList<>();
     ArrayList<Product> userProducts = new ArrayList<>();
 
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +65,8 @@ public class ProductsActivity extends AppCompatActivity {
         userReference = FirebaseDatabase.getInstance().getReference("usuarios/" + userUID);
         allItems = FirebaseDatabase.getInstance().getReference("productos");
 
+        mAuth = FirebaseAuth.getInstance();
+
         dbr = FirebaseDatabase.getInstance().getReference("productos");
 
         String[] arraySpinner = new String[]{
@@ -77,6 +78,8 @@ public class ProductsActivity extends AppCompatActivity {
 
         retrieveData();
         selectCategory();
+        editProduct();
+        checkBoxFilter();
     }
 
     @Override
@@ -112,6 +115,7 @@ public class ProductsActivity extends AppCompatActivity {
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                products.clear();
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     products.add(dataSnapshot1.getValue(Product.class));
@@ -355,5 +359,16 @@ public class ProductsActivity extends AppCompatActivity {
 
     private void updateAdapter(ArrayList<Product> products){
         adapter.updateAdapter(products);
+    }
+
+    public void editProduct(){
+        productsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ProductsActivity.this,EditProductsActivity.class);
+                intent.putExtra("product",products.get(position));
+                startActivity(intent);
+            }
+        });
     }
 }

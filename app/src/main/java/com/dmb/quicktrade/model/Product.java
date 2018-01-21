@@ -1,10 +1,12 @@
 package com.dmb.quicktrade.model;
 
+import java.io.Serializable;
+
 /**
  * Created by davidmari on 21/1/18.
  */
 
-public class Product {
+public class Product implements Serializable{
 
     String name;
     String description;

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dmb.quicktrade.R;
@@ -20,6 +21,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText name,surname,address;
     User user;
     DatabaseReference dbr;
+    Spinner spCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class EditUserActivity extends AppCompatActivity {
         name = findViewById(R.id.editName);
         surname = findViewById(R.id.editSurname);
         address = findViewById(R.id.editAddress);
+        spCategory = findViewById(R.id.spCategory);
 
         getUsersData();
     }
@@ -38,6 +41,7 @@ public class EditUserActivity extends AppCompatActivity {
         name.setText(user.getName());
         surname.setText(user.getSurname());
         address.setText(user.getAddress());
+        spCategory.getSelectedItem();
     }
 
     public void editUser(View v){
@@ -51,6 +55,7 @@ public class EditUserActivity extends AppCompatActivity {
                     dbr.child(key).child("name").setValue(name.getText().toString());
                     dbr.child(key).child("surname").setValue(surname.getText().toString());
                     dbr.child(key).child("address").setValue(address.getText().toString());
+                    dbr.child(key).child("category").setValue(spCategory.getSelectedItem());
                 }
             }
 

@@ -22,7 +22,8 @@
         <activity android:name=".Users.ShowUsersActivity" />
         <activity android:name=".Users.EditUserActivity" />
         <activity android:name=".Products.AddProductActivity" />
-        <activity android:name=".Products.ProductsActivity"></activity>
+        <activity android:name=".Products.ProductsActivity" />
+        <activity android:name=".Products.EditProductsActivity"></activity>
     </application>
 
 </manifest>
