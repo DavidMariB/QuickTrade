@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.dmb.quicktrade.model.Product;
 import com.google.firebase.database.DatabaseReference;
@@ -45,22 +46,19 @@ public class AddProductActivity extends AppCompatActivity {
 
     }
 
-    public void addProduct(View v) {
-        boolean correctEditextData = checkIfEmpty();
-        if (correctEditextData) {
+    public void addProduct() {
             String key = dbr.push().getKey();
             Product product = new Product(name.getText().toString(), description.getText().toString(), spinnerCategory.getSelectedItem().toString(), price.getText().toString(), getIntent().getExtras().getString("userUID"), key);
             dbr.child(key).setValue(product);
             setResult(RESULT_OK, getIntent());
             finish();
-        }
     }
 
-    private boolean checkIfEmpty() {
-        boolean correctEditextData = true;
+    public void checkFields(View v) {
         if(description.getText().toString().isEmpty() || name.getText().toString().isEmpty() || price.getText().toString().isEmpty()){
-            correctEditextData = false;
+            Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+            addProduct();
         }
-        return correctEditextData;
     }
 }

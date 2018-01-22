@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="Editar Producto"
             android:layout_marginTop="20dp"
-            android:onClick="editProduct"/>
+            android:onClick="checkFields"/>
 
         <Button
             android:id="@+id/btnDeleteProd"

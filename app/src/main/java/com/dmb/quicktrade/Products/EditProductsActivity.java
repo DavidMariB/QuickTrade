@@ -63,7 +63,15 @@ public class EditProductsActivity extends AppCompatActivity {
         Log.e("UserUID: ",product.getUserUID());
     }
 
-    public void editProduct(View v){
+    public void checkFields(View v){
+        if(name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || price.getText().toString().isEmpty()){
+            Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+            editProduct();
+        }
+    }
+
+    public void editProduct(){
         dbr = FirebaseDatabase.getInstance().getReference("productos");
         Query q = dbr.orderByChild("name").equalTo(product.getName());
         q.addListenerForSingleValueEvent(new ValueEventListener() {

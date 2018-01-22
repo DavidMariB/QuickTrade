@@ -49,6 +49,7 @@ public class ShowUsersActivity extends AppCompatActivity {
     }
 
     public void retrieveData(){
+        users.clear();
         Query q = dbr.orderByKey();
         q.addValueEventListener(new ValueEventListener() {
             @Override

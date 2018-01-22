@@ -46,6 +46,6 @@
         android:layout_height="wrap_content"
         android:text="editar usuario"
         android:layout_marginTop="20dp"
-        android:onClick="editUser"/>
+        android:onClick="checkFields"/>
 
 </android.widget.LinearLayout>

@@ -41,10 +41,17 @@ public class EditUserActivity extends AppCompatActivity {
         name.setText(user.getName());
         surname.setText(user.getSurname());
         address.setText(user.getAddress());
-        spCategory.getSelectedItem();
     }
 
-    public void editUser(View v){
+    public void checkFields(View v){
+        if(name.getText().toString().isEmpty() || surname.getText().toString().isEmpty() || address.getText().toString().isEmpty()){
+            Toast.makeText(this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+            editUser();
+        }
+    }
+
+    public void editUser(){
         dbr = FirebaseDatabase.getInstance().getReference("usuarios");
         Query q = dbr.orderByChild("username").equalTo(user.getUsername());
         q.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -55,7 +62,6 @@ public class EditUserActivity extends AppCompatActivity {
                     dbr.child(key).child("name").setValue(name.getText().toString());
                     dbr.child(key).child("surname").setValue(surname.getText().toString());
                     dbr.child(key).child("address").setValue(address.getText().toString());
-                    dbr.child(key).child("category").setValue(spCategory.getSelectedItem());
                 }
             }
 

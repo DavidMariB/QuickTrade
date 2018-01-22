@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="Añadir Producto"
             android:layout_marginTop="20dp"
-            android:onClick="addProduct"/>
+            android:onClick="checkFields"/>
 
     </LinearLayout>
 
