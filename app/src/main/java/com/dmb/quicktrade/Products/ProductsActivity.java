@@ -34,7 +34,7 @@ public class ProductsActivity extends AppCompatActivity {
     ProductsAdapter adapter;
     DatabaseReference dbr;
     ListView productsList;
-    CheckBox checkBoxUserProducts;
+    CheckBox checkBoxUserProducts,checkBoxUserFavorites;
     Spinner categorySpinner;
 
     int itemPosition;
@@ -59,6 +59,7 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_products);
 
         checkBoxUserProducts = findViewById(R.id.checkBoxMyItems);
+        checkBoxUserFavorites = findViewById(R.id.checkBoxFavorites);
         categorySpinner = findViewById(R.id.categorySpinner);
         productsList = findViewById(R.id.listProducts);
         userUID = getIntent().getExtras().getString("userUID");
@@ -80,6 +81,7 @@ public class ProductsActivity extends AppCompatActivity {
         selectCategory();
         editProduct();
         checkBoxFilter();
+        checkBoxFavorites();
     }
 
     @Override
@@ -98,6 +100,8 @@ public class ProductsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Sesión cerrada corretamente", Toast.LENGTH_SHORT).show();
                 this.finish();
                 return true;
+            case R.id.listFavorites:
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -146,13 +150,36 @@ public class ProductsActivity extends AppCompatActivity {
                 } else {
                     if (checkBoxUserProducts.isChecked()) {
                         userProducts.clear();
-                        for (int i = 0; i < products.size(); i++) {
+                        for (int i = 0;i<products.size();i++) {
                             if (products.get(i).getUserUID().equals(userUID)) {
                                 userProducts.add(products.get(i));
                             }
                         }
                         updateAdapter(userProducts);
                     } else {
+                        updateAdapter(products);
+                    }
+                }
+            }
+        });
+    }
+
+    public void checkBoxFavorites(){
+        checkBoxUserFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(categorySpinner.getSelectedItemPosition() !=0){
+                    categorySpinner.setSelection(0);
+                }else{
+                    if(checkBoxUserFavorites.isChecked()){
+                        userProducts.clear();
+                        for (int i = 0;i<products.size();i++){
+                            if (products.get(i).getFavorite().booleanValue() == true){
+                                userProducts.add(products.get(i));
+                            }
+                        }
+                        updateAdapter(userProducts);
+                    }else {
                         updateAdapter(products);
                     }
                 }

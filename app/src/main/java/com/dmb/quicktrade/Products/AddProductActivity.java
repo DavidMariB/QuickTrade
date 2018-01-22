@@ -48,7 +48,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void addProduct() {
             String key = dbr.push().getKey();
-            Product product = new Product(name.getText().toString(), description.getText().toString(), spinnerCategory.getSelectedItem().toString(), price.getText().toString(), getIntent().getExtras().getString("userUID"), key);
+            Product product = new Product(name.getText().toString(), description.getText().toString(), spinnerCategory.getSelectedItem().toString(), price.getText().toString(), getIntent().getExtras().getString("userUID"), key,false);
             dbr.child(key).setValue(product);
             setResult(RESULT_OK, getIntent());
             finish();

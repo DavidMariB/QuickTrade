@@ -2,6 +2,7 @@ package com.dmb.quicktrade.Users;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,7 +22,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText name,surname,address;
     User user;
     DatabaseReference dbr;
-    Spinner spCategory;
+    String userUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class EditUserActivity extends AppCompatActivity {
         name = findViewById(R.id.editName);
         surname = findViewById(R.id.editSurname);
         address = findViewById(R.id.editAddress);
-        spCategory = findViewById(R.id.spCategory);
 
         getUsersData();
     }

@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    Toast.makeText(RegisterActivity.this, "Debes escoger un nombre de usuario diferente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Debes escoger un nombre de usuario o correo diferentes", Toast.LENGTH_SHORT).show();
                 }
             }
 

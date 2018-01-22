@@ -14,14 +14,16 @@ public class Product implements Serializable{
     String price;
     String userUID;
     String key;
+    Boolean favorite = false;
 
-    public Product(String name, String description, String category, String price, String userUID, String key) {
+    public Product(String name, String description, String category, String price, String userUID, String key, Boolean favorite) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.price = price;
         this.userUID = userUID;
         this.key = key;
+        this.favorite = favorite;
     }
 
     public Product(){
@@ -74,5 +76,13 @@ public class Product implements Serializable{
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 }

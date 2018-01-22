@@ -6,4 +6,8 @@
         android:title="Cerrar Sesion"
     />
 
+    <item
+        android:id="@+id/listFavorites"
+        android:title="Ver Favoritos"/>
+
 </menu>

@@ -45,7 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Correo Electronico"
-        android:ems="12"/>
+        android:ems="12"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/regPassword"

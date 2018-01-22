@@ -56,6 +56,15 @@
         android:layout_marginBottom="24dp"
         android:text="Ver Solo Mis Items" />
 
+    <CheckBox
+        android:id="@+id/checkBoxFavorites"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+        android:layout_toEndOf="@id/checkBoxMyItems"
+        android:layout_alignBottom="@id/checkBoxMyItems"
+        android:text="Ver Favoritos"/>
+
     <Button
         android:id="@+id/btnAddProduct"
         android:layout_width="50dp"

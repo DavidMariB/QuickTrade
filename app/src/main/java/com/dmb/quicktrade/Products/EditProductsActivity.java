@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -25,13 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 public class EditProductsActivity extends AppCompatActivity {
 
     EditText name,description,price;
-    Spinner spCategory;
     Product product;
     DatabaseReference dbr;
-    DatabaseReference userReference;
-    FirebaseUser currentUser;
-    User user;
     String userUID;
+    Boolean favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +41,30 @@ public class EditProductsActivity extends AppCompatActivity {
         name = findViewById(R.id.editProdName);
         description = findViewById(R.id.editProdDesc);
         price = findViewById(R.id.editProdPrice);
-        spCategory = findViewById(R.id.spCategory);
-
-        /*String[] arraySpinner = new String[] {
-                "Tecnologia", "Coches", "Hogar"
-        };
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, arraySpinner);
-        spCategory.setAdapter(adapter);*/
 
         getProductData();
+
+        dbr = FirebaseDatabase.getInstance().getReference("productos");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.edit_products_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.addFavorite:
+                addProdFav();
+                Toast.makeText(this, "Añadido a Favoritos", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void getProductData(){
@@ -60,7 +73,7 @@ public class EditProductsActivity extends AppCompatActivity {
         name.setText(product.getName());
         description.setText(product.getDescription());
         price.setText(product.getPrice());
-        Log.e("UserUID: ",product.getUserUID());
+        favorite = product.getFavorite();
     }
 
     public void checkFields(View v){
@@ -69,6 +82,25 @@ public class EditProductsActivity extends AppCompatActivity {
         }else{
             editProduct();
         }
+    }
+
+    public void addProdFav(){
+        dbr = FirebaseDatabase.getInstance().getReference("productos");
+        Query q = dbr.orderByChild("name").equalTo(product.getName());
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    String key = dataSnapshot1.getKey();
+                    dbr.child(key).child("favorite").setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void editProduct(){
@@ -83,7 +115,6 @@ public class EditProductsActivity extends AppCompatActivity {
                         dbr.child(key).child("name").setValue(name.getText().toString());
                         dbr.child(key).child("description").setValue(description.getText().toString());
                         dbr.child(key).child("price").setValue(price.getText().toString());
-                        //dbr.child(key).child("category").setValue(spCategory.getSelectedItem().toString());
 
                         Toast.makeText(EditProductsActivity.this, "Producto Modificado", Toast.LENGTH_SHORT).show();
                     }
