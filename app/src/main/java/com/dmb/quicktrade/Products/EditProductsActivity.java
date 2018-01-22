@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.dmb.quicktrade.R;
 import com.dmb.quicktrade.model.Product;
 import com.dmb.quicktrade.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,9 @@ public class EditProductsActivity extends AppCompatActivity {
     Spinner spCategory;
     Product product;
     DatabaseReference dbr;
+    DatabaseReference userReference;
+    FirebaseUser currentUser;
+    User user;
     String userUID;
 
     @Override
@@ -50,10 +55,12 @@ public class EditProductsActivity extends AppCompatActivity {
     }
 
     public void getProductData(){
+        userUID = getIntent().getExtras().getString("userUID");
         product = (Product) getIntent().getExtras().getSerializable("product");
         name.setText(product.getName());
         description.setText(product.getDescription());
         price.setText(product.getPrice());
+        Log.e("UserUID: ",product.getUserUID());
     }
 
     public void editProduct(View v){
@@ -62,12 +69,18 @@ public class EditProductsActivity extends AppCompatActivity {
         q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    String key = dataSnapshot1.getKey();
-                    dbr.child(key).child("name").setValue(name.getText().toString());
-                    dbr.child(key).child("description").setValue(description.getText().toString());
-                    dbr.child(key).child("price").setValue(price.getText().toString());
-                    //dbr.child(key).child("category").setValue(spCategory.getSelectedItem().toString());
+                if (product.getUserUID().equals(userUID)){
+                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                        String key = dataSnapshot1.getKey();
+                        dbr.child(key).child("name").setValue(name.getText().toString());
+                        dbr.child(key).child("description").setValue(description.getText().toString());
+                        dbr.child(key).child("price").setValue(price.getText().toString());
+                        //dbr.child(key).child("category").setValue(spCategory.getSelectedItem().toString());
+
+                        Toast.makeText(EditProductsActivity.this, "Producto Modificado", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(EditProductsActivity.this, "No tienes permiso para modificar este articulo", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -76,8 +89,6 @@ public class EditProductsActivity extends AppCompatActivity {
 
             }
         });
-
-        Toast.makeText(this, "Producto Modificado", Toast.LENGTH_SHORT).show();
         EditProductsActivity.this.finish();
     }
 
@@ -87,11 +98,17 @@ public class EditProductsActivity extends AppCompatActivity {
         q.addListenerForSingleValueEvent((new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    String key = dataSnapshot1.getKey();
-                    DatabaseReference bbdd = dbr.child(key);
+                if (product.getUserUID().equals(userUID)){
+                    for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                        String key = dataSnapshot1.getKey();
+                        DatabaseReference bbdd = dbr.child(key);
 
-                    bbdd.removeValue();
+                        bbdd.removeValue();
+
+                        Toast.makeText(EditProductsActivity.this, "Articulo eliminado", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(EditProductsActivity.this, "No tienes permiso para modificar este articulo", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -100,8 +117,6 @@ public class EditProductsActivity extends AppCompatActivity {
 
             }
         }));
-
-        Toast.makeText(this, "Articulo eliminado", Toast.LENGTH_SHORT).show();
         EditProductsActivity.this.finish();
     }
 }

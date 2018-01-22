@@ -50,7 +50,7 @@ public class ProductsAdapter extends BaseAdapter {
         Product product = products.get(position);
         ((TextView) convertView.findViewById(R.id.listProdName)).setText(product.getName());
         ((TextView) convertView.findViewById(R.id.listProdDesc)).setText(product.getDescription());
-        ((TextView) convertView.findViewById(R.id.listProdPrice)).setText(product.getPrice());
+        ((TextView) convertView.findViewById(R.id.listProdPrice)).setText(product.getPrice()+"€");
         return convertView;
     }
 
