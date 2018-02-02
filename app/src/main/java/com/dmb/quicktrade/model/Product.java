@@ -1,5 +1,7 @@
 package com.dmb.quicktrade.model;
 
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 /**
@@ -15,8 +17,9 @@ public class Product implements Serializable{
     String userUID;
     String key;
     Boolean favorite = false;
+    String prodImage;
 
-    public Product(String name, String description, String category, String price, String userUID, String key, Boolean favorite) {
+    public Product(String name, String description, String category, String price, String userUID, String key, Boolean favorite, String prodImage) {
         this.name = name;
         this.description = description;
         this.category = category;
@@ -24,6 +27,7 @@ public class Product implements Serializable{
         this.userUID = userUID;
         this.key = key;
         this.favorite = favorite;
+        this.prodImage = prodImage;
     }
 
     public Product(){
@@ -84,5 +88,13 @@ public class Product implements Serializable{
 
     public void setFavorite(Boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public String getProdImage() {
+        return prodImage;
+    }
+
+    public void setProdImage(String prodImage) {
+        this.prodImage = prodImage;
     }
 }

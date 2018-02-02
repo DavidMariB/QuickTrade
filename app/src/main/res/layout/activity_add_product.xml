@@ -34,12 +34,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spCategory"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"/>
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spCategory"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnPickPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_camera_enhance_black_24dp"
+                    android:layout_marginLeft="30dp"/>
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/regProdName"
@@ -81,5 +95,22 @@
             android:onClick="checkFields"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPrevImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:id="@+id/prodImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
